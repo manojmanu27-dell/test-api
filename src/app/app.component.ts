@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import {  RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,11 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'learn-pa';
+export class AppComponent implements OnInit {
+
+  ngOnInit() {
+    console.log('AppComponent initialized');
+  }
+
+
 }

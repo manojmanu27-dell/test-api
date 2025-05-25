@@ -1,0 +1,39 @@
+<h1>Welcome to My World</h1>
+<div class="conatiner-main">
+    <div class="container-main-userlogin row">
+        <mat-card appearance="outlined">
+            <mat-card-content>
+                <form class="row">
+                    @if(!hasUserSignedUp){
+                    <div class="row">
+                        <mat-form-field class="col-6 mr-2">
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="Enter Your First name" type="text" name="first-name"
+                                [(ngModel)]="firstName" />
+                        </mat-form-field>
+                        <mat-form-field class="col-6 ml-2">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="Enter Your Last name" type="text" name="last-name"
+                                [(ngModel)]="lastName" />
+                        </mat-form-field>
+                    </div>
+                    }
+                    <mat-form-field>
+                        <mat-label>User name</mat-label>
+                        <input matInput placeholder="Enter Your User name" type="text" name="user-name"
+                            [(ngModel)]="userName" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>User Password</mat-label>
+                        <input matInput placeholder="Enter Your Password" type="password" name="password"
+                            [(ngModel)]="userPwd" />
+                    </mat-form-field>
+                    <div class="row justify-content-between">
+                        <button mat-raised-button class="col-5" (click)="login()">Login</button>
+                        <button mat-raised-button class="col-5" (click)="signup()">{{signupText}}</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
