@@ -16,7 +16,8 @@ export class AppComponent implements OnInit {
   @HostListener('window:beforeunload', ['$event'])
   beforeUnloadHandler(event: BeforeUnloadEvent) {
     // This method is called before the window is unloaded
-    sessionStorage.clear();
+    let userName = sessionStorage.getItem('userName') || '';
+    sessionStorage.removeItem(userName);
     console.log('Session storage cleared before unload');
   }
 }
