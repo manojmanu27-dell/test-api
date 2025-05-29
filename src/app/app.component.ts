@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {  RouterOutlet } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,5 +13,10 @@ export class AppComponent implements OnInit {
     console.log('AppComponent initialized');
   }
 
-
+  @HostListener('window:beforeunload', ['$event'])
+  beforeUnloadHandler(event: BeforeUnloadEvent) {
+    // This method is called before the window is unloaded
+    sessionStorage.clear();
+    console.log('Session storage cleared before unload');
+  }
 }

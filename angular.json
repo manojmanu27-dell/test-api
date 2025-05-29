@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "baseHref": "/test-api/",
             "outputPath": "dist/learn-pa",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -39,11 +40,13 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/test-api/",
+              "optimization": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "5MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -63,6 +66,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "servePath": "/test-api/"
+          },
           "configurations": {
             "production": {
               "buildTarget": "learn-pa:build:production"

@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     console.log('LoginComponent initialized');
     console.log("the router is: ", this.router);
-    if(this.router.url === '/signup') {
+    if (this.router.url === '/signup') {
       this.hasUserSignedUp = false;
       this.signupText = 'Register';
     }
@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
     console.log('Password:', this.userPwd);
     if (this.storageService.keyExists(this.userName)) {
       this.router.navigate(['/use-form']);
+      sessionStorage.setItem('userName', this.userName);
     }
     console.log('SHA-256 Hash of Password:', await this.getSHA256Hash(this.userPwd));
     // Here you can add your login logic, e.g., call an authentication service        
@@ -61,7 +62,7 @@ export class LoginComponent implements OnInit {
     this.hasUserSignedUp = false;
     this.signupText = 'Register';
     this.router.navigate(['/signup']);
-    if(!this.userName || !this.userPwd || !this.firstName || !this.lastName) {
+    if (!this.userName || !this.userPwd || !this.firstName || !this.lastName) {
       console.log('Please fill in all fields');
       return;
     }
@@ -71,6 +72,7 @@ export class LoginComponent implements OnInit {
     }
     let hashedPwd = await this.getSHA256Hash(this.userPwd);
     this.storageService.saveData(this.userName, hashedPwd);
+    sessionStorage.setItem('userName', this.userName);
     this.router.navigate(['/use-form']);
     console.log('User signed up successfully');
     this.reset();
