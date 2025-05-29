@@ -69,7 +69,7 @@
 @if(data && data.length > 0) {
 <div class="row justify-content-center text-center mt-2 mb-2">
     <div class="col-12">
-        <h2>Enrolled Users</h2>
+        <h2>Enrolled Users List <span id="total-no-of-enrolled-users">{{data.length}}</span></h2>
         <app-enrolled-users-list [registerdUsers]="data"></app-enrolled-users-list>
     </div>
 </div>
