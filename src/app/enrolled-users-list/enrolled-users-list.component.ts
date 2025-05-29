@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 
 @Component({
@@ -7,22 +7,15 @@ import { MatTableModule } from '@angular/material/table';
   templateUrl: './enrolled-users-list.component.html',
   styleUrl: './enrolled-users-list.component.scss'
 })
-export class EnrolledUsersListComponent implements OnInit {
+export class EnrolledUsersListComponent implements OnChanges {
 
   @Input() registerdUsers!: any[];
   displayedColumns: string[] = ['fullName', 'branch', 'email'];
   dataSource = this.registerdUsers || [];
-  ngOnInit(): void {
+ 
 
-    // {
-    //     "fName": "test",
-    //     "mName": "user",
-    //     "lName": "hhkj",
-    //     "mail": ",amp",
-    //     "userBranch": "Civil"
-    // }
-    console.log('EnrolledUsersListComponent initialized with users:', this.registerdUsers);
-    if(this.registerdUsers){
+  ngOnChanges(): void {
+  if(this.registerdUsers){
       this.dataSource = this.registerdUsers;
     }
   }
