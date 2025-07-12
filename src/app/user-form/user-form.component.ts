@@ -6,12 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { NgIf } from '@angular/common';
-import { EnrolledUsersListComponent } from '../enrolled-users-list/enrolled-users-list.component';
+// import { EnrolledUsersListComponent } from '../enrolled-users-list/enrolled-users-list.component';
 import { StorageService } from '../storage.service';
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: 'app-user-form',
-  imports: [EnrolledUsersListComponent, NgIf, MatFormFieldModule, MatButtonModule, MatInputModule, MatIconModule, FormsModule, MatSelectModule],
+  imports: [NgIf, MatFormFieldModule, MatButtonModule, MatInputModule, MatIconModule, FormsModule, MatSelectModule],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss'
 })
@@ -21,6 +23,7 @@ export class UserFormComponent {
   lastName: string = '';
   branch: string = '';
   email: string = '';
+  uniqueId: string = '';
   data: any = [];
 
   constructor(private storageService: StorageService) { }
@@ -37,9 +40,11 @@ export class UserFormComponent {
       sessionStorage.setItem(userName, updatedData);
     } else {
       this.data = [userData];
-       let updatedData = JSON.stringify(this.data);
+      let updatedData = JSON.stringify(this.data);
       sessionStorage.setItem(userName, updatedData);
     }
+    this.uniqueId = uuidv4();
+
     this.reset(form);
   }
 
@@ -52,4 +57,5 @@ export class UserFormComponent {
     // this.branch = '';
     // this.email = '';
   }
+
 }
